@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fake Image news detector</title>
+</head>
+
+<style>
+  body {
+    background-color: black;
+  }
+
+  .navbar-toggle {
+    display: none;
+    cursor: pointer;
+    position: fixed;
+    z-index: 50;
+    top: 15px;
+    left: 15px;
+    background: none;
+    border: 0;
+  }
+
+  .bar1,
+  .bar2,
+  .bar3 {
+    width: 30px;
+    height: 4px;
+    background-color: rgb(255, 255, 255);
+    margin: 5px 0;
+    transition: 0.4s;
+  }
+
+  .change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-6px, 2px);
+    transform: rotate(-45deg) translate(-6px, 2px);
+  }
+
+  .change .bar2 {
+    opacity: 0;
+  }
+
+  .change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-9px, -8px);
+    transform: rotate(45deg) translate(-9px, -8px);
+  }
+
+  nav {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    z-index: 40;
+    transform: translate(0, -100%);
+    transition: transform 1s;
+  }
+
+  .nav-list {
+    padding-top: 50px;
+    background-color: #2d126d;
+  }
+
+  nav .nav-list a {
+    width: 80%;
+    font-size: 18px;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.445);
+  }
+
+  #wave {
+    width: 100%;
+    margin-top: -5px;
+  }
+
+  .navBtn {
+    margin: 0 10px 0 0;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    font-size: 15px;
+    line-height: 1.4;
+    padding: 13px 20px;
+    transition: box-shadow 0.1s, top 0.1s;
+    box-shadow: 0 3px 0 rgba(0, 0, 0, 0.3);
+    background: #3a0f9d;
+    color: white;
+    text-decoration: none;
+    font-family: sans-serif;
+  }
+
+  .navBtn:hover {
+    box-shadow: 0 3px 0 transparent;
+    transform: rotate(10deg);
+  }
+
+  .navBtn:active {
+    background: #f2f2f2;
+    color: #3a0f9d;
+  }
+
+  .buttons {
+    display: block;
+    position: fixed;
+    top: 30px;
+    right: 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    .navbar-toggle {
+      display: block;
+    }
+
+    .buttons {
+      display: none;
+    }
+  }
+
+  h1 {
+    color: white;
+    text-align: center;
+    font-size: xx-large;
+  }
+  .hmhe{
+    color:white;
+    text-align: center;
+    padding: 2em;
+    /* margin-bottom: 5em; */
+    border: 10px bold #f2f2f2;
+  }
+</style>
+
+<script>
+  nav = "close";
+
+  function navbar(x) {
+    x.classList.toggle("change");
+    if (nav == "close") {
+      document.getElementById("nav").style.transform = "translate(0,0)";
+      nav = "open";
+    } else if (nav == "open") {
+      document.getElementById("nav").style.transform = "translate(0,-100%)";
+      nav = "close";
+    }
+  }
+</script>
+
+
+<body>
+  <h1>Fake news verifire</h1>
+  <section class="buttons">
+    <a class="navBtn" href="/">Home</a>
+    <a class="navBtn" href="/">About Us</a>
+    <a class="navBtn" href="/">The Team</a>
+  </section>
+  <button class="navbar-toggle" onclick="navbar(this)">
+    <div class="bar1"></div>
+    <div class="bar2"></div>
+    <div class="bar3"></div>
+  </button>
+  <nav id="nav">
+    <section class="nav-list">
+      <a href="/">Home</a>
+      <a href="/about">About Us</a>
+      <a href="/">The Team</a>
+    </section>
+    <svg id="wave" style="transform: rotate(180deg); transition: 0.3s" viewBox="0 0 1440 490" version="1.1"
+      xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0">
+          <stop stop-color="rgba(45, 18, 109, 1)" offset="0%"></stop>
+          <stop stop-color="rgba(58.255, 14.72, 157.418, 1)" offset="100%"></stop>
+        </linearGradient>
+      </defs>
+      <path style="transform: translate(0, 0px); opacity: 1" fill="url(#sw-gradient-0)"
+        d="M0,343L26.7,334.8C53.3,327,107,310,160,285.8C213.3,261,267,229,320,187.8C373.3,147,427,98,480,130.7C533.3,163,587,278,640,326.7C693.3,376,747,359,800,343C853.3,327,907,310,960,261.3C1013.3,212,1067,131,1120,155.2C1173.3,180,1227,310,1280,343C1333.3,376,1387,310,1440,285.8C1493.3,261,1547,278,1600,285.8C1653.3,294,1707,294,1760,269.5C1813.3,245,1867,196,1920,171.5C1973.3,147,2027,147,2080,187.8C2133.3,229,2187,310,2240,359.3C2293.3,408,2347,425,2400,367.5C2453.3,310,2507,180,2560,155.2C2613.3,131,2667,212,2720,245C2773.3,278,2827,261,2880,236.8C2933.3,212,2987,180,3040,171.5C3093.3,163,3147,180,3200,155.2C3253.3,131,3307,65,3360,106.2C3413.3,147,3467,294,3520,359.3C3573.3,425,3627,408,3680,400.2C3733.3,392,3787,392,3813,392L3840,392L3840,490L3813.3,490C3786.7,490,3733,490,3680,490C3626.7,490,3573,490,3520,490C3466.7,490,3413,490,3360,490C3306.7,490,3253,490,3200,490C3146.7,490,3093,490,3040,490C2986.7,490,2933,490,2880,490C2826.7,490,2773,490,2720,490C2666.7,490,2613,490,2560,490C2506.7,490,2453,490,2400,490C2346.7,490,2293,490,2240,490C2186.7,490,2133,490,2080,490C2026.7,490,1973,490,1920,490C1866.7,490,1813,490,1760,490C1706.7,490,1653,490,1600,490C1546.7,490,1493,490,1440,490C1386.7,490,1333,490,1280,490C1226.7,490,1173,490,1120,490C1066.7,490,1013,490,960,490C906.7,490,853,490,800,490C746.7,490,693,490,640,490C586.7,490,533,490,480,490C426.7,490,373,490,320,490C266.7,490,213,490,160,490C106.7,490,53,490,27,490L0,490Z">
+      </path>
+    </svg>
+  </nav>
+  <!-- -------------------------------------------------------------------- -->
+
+  <section class="about"></section>
+
+  <div class="hmhe flex items-center justify-center min-h-screen">
+    <div class="mb-4 p-4 text-sm w-80">
+      <div class="font-bold mb-2">Alpine Upload Image Preview</div>
+      <div class="" x-data="previewImage()">
+        <label for="logo">
+          <div
+            class="w-full h-48 rounded bg-gray-100 border border-gray-200 flex items-center justify-center overflow-hidden">
+            <img x-show="imageUrl" :src="imageUrl" class="w-full object-cover" />
+            <div x-show="!imageUrl" class="text-gray-300 flex flex-col items-center">
+              <svg style="width:10em" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+              </svg>
+              <div style="margin:2em">Image Preview</div>
+            </div>
+          </div>
+        </label>
+
+        <div>
+          <label for="logo" class="block mb-2 mt-4 font-bold">Upload image..</label>
+          <br/>
+          <br/>
+          <input class="w-full cursor-pointer" type="file" name="logo" id="logo" @change="fileChosen" />
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
